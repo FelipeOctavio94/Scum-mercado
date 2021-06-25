@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+*{
+    font-family: 'Architects Daughter', cursive;
+}
+
+html{
+  background: url(../img/fondo4.jpg)no-repeat center center fixed;
+  height: 100%;
+  background-size: 100% 100%;
+}
+
+.ancho-100{
+  width: 100%;
+}
+
+.input-field input:focus + label + textarea{
+  color: #afb153  !important;
+}
+.input-field input:focus{
+  border-bottom: 1px solid #dcdf4d !important;
+  box-shadow: 0 1px 0 0 #dcdf4d!important;
+}
+.icon-img{
+
+  width: 28px;
+}
+
+
+
+.input-field:hover {
+
+  padding: 5px;
+  border-radius: 10px;
+}
+
+
+.input-field:hover label {
+  padding: 10px;
+}
