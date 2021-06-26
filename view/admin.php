@@ -107,7 +107,7 @@
                                 </tr> 
                                 <?php foreach($usuarios as $item){ ?>
                                     
-                                        <tr class="red-text">                                   
+                                        <tr class="black-text">                                   
                                             <td><?=$item['rut']; ?></td>
                                             <td><?=$item['nombre']; ?></td>
                                            

@@ -1,5 +1,5 @@
 new Vue({
-    el:'#buscarNombre',
+    el:'#buscarProducto',
     data:{
         url:"http://localhost/scum-mercado/",
         productoexiste: false ,
@@ -9,7 +9,7 @@ new Vue({
        
     },
     methods:{
-        buscarNombre: async function(){
+        buscarProducto: async function(){
             var recurso="controllers/BuscarProductoNombre.php";
             var form = new FormData();
             form.append("nombre",this.nombre);
@@ -18,10 +18,25 @@ new Vue({
                     method:"post",
                     body: form,
                 });
-                const data = await res.json();
-                console.log(data);
-                this.productos=data;
-            } catch (error) {
+                if(this.nombre==""){
+                    M.toast({html: 'Ingrese nombre'})
+                }else{
+                    const data = await res.json();
+                    this.productos=data;
+                    var cantidad=0;
+                    for(i in data){
+                        cantidad++;
+                    }             
+                    if(data==0){
+                        M.toast({html: 'Busqueda sin resultados'})
+                        this.productoexiste = false;
+                    }else{
+
+                        M.toast({html: '¡Busqueda finalizada con exito!! cantidad de recetas: '+cantidad})
+                        this.productoexiste = true;
+                    }
+                }
+                } catch (error) {
                 console.log(error);
             }
         },

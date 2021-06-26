@@ -1,7 +1,5 @@
 <?php
 
-namespace controllers;
-
 use models\Producto as Producto;
 
 require_once("../models/Producto.php");
@@ -14,30 +12,24 @@ class BuscarProductoNombre{
         $this->nombre = $_POST['nombre'];
     }
 
-    public function buscarxNombre(){
-
+    public function buscarProducto(){
+        session_start();
         if ($this->nombre == "") {
-            $mensaje = ["msg"=>"Ingrese un producto"];
-            echo json_encode($mensaje);
+            $_SESSION['error_buscar'] = "Complete el nombre";
+            header("Location: ../buscarProducto.php");
             return;
-        }
-
-        $model = new Producto();
-        $arreglo = $model-> buscarxnombre($this->nombre);
-        
-
-        if (count($arreglo)) {
-            $arr = $arreglo[0];
-            $arr["msg"] = "Producto encontrado";
-            echo json_encode($arr); 
-
+        } 
+        $modelo = new Producto();
+        $arr = $modelo->buscarProducto($this->nombre);
+        if (count($arr) == 0) {
+            $_SESSION['error_buscar'] = "Nombre no existe";
         } else {
-            $mensaje = ["msg"=>"Producto no existe"];
-            echo json_encode($mensaje);
+            $_SESSION['producto_buscar'] = $arr[0]; //['id'=>?, 'nombre'=>?]
         }
-        
+
+        header("Location: ../buscarProducto.php");
     }
 
 }
 $obj = new BuscarProductoNombre();
-$obj->buscarxNombre();
+$obj->buscarProducto();

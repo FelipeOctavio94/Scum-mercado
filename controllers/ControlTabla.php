@@ -27,12 +27,12 @@ class ControlTabla
             $producto = $modelo->buscarProducto($this->bt_edit);
             $_SESSION['producto'] = $producto[0];
 
-            header("Location: ../index.php");
+            header("Location: ../producto.php");
         } else {
             //echo "eliminar el ID $this->bt_delete";
             $modelo = new Producto();
             $modelo->eliminarProducto($this->bt_delete);
-            header("Location: ../buscarProducto.php");
+            header("Location: ../producto.php");
         }
     }
 }

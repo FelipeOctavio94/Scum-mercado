@@ -1,5 +1,10 @@
 <?php
+    use models\Producto as Producto;
     session_start();
+    require_once("../models/Producto.php");
+    $model = new Producto();
+    $rol="vendedor";
+    $productos = $model->getProducto();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +28,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 20px;">
                     <li><a href="../view/user.php">Añadir producto<i class="material-icons left">playlist_add</i></a></li>
                         <li><a href="../view/buscarProducto.php">Buscar producto<i class="material-icons left">search</i></a></li>
-                        <li><a href="../view/ingresoProducto.php">Productos<i class="material-icons left"></i></a></li>
+                        <li><a href="../view/producto.php">Productos<i class="material-icons left"></i></a></li>
                         <li><a href="salir.php"><i class="material-icons" style="font-size: 40px;">exit_to_app</i></a></li>
                     </ul>
                 </div>
@@ -43,7 +48,7 @@
                 </li>
                 <li><a href="../view/user.php">Añadir producto</a></li>
                 <li><a href="../view/buscarProducto.php">Buscar producto</a></li>
-                <li><a href="#">productos</a></li>
+                <li><a href="../view/producto.php">productos</a></li>
                 <li><a href="salir.php"><i class="material-icons deep-orange-text" style="font-size: 40px;">exit_to_app</i></a></li>
             </ul>
 
@@ -51,7 +56,7 @@
                 <h5>Buscar producto</h5>
                 <br>
                 <div class="row" id="app">
-                    <form @submit.prevent="buscarNombre">
+                <form action="controllers/BuscarProductoNombre.php" method="POST">
                         <div class="col l3 m3 s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">lock_outline</i>
@@ -64,40 +69,77 @@
                             <br>
                             <button class="btn-small deep-orange">Buscar</button>
                         </div>
-                    </form>
+                </form>
+                <div class="col l6">
+                <p class="red-text  ">
+                    <?php
+                    if (isset($_SESSION['error_buscar'])) {
+                        echo $_SESSION['error_buscar'];
+                        unset($_SESSION['error_buscar']);
+                    }
+                    ?>
+
+                    <?php
+                    if (isset($_SESSION['producto_buscar'])) { ?>
+                        <ul class="collection">
+                            <li class="collection-item"><?= $_SESSION['producto_buscar']['nombre'] ?></li>
+                            <li class="collection-item"><?= $_SESSION['producto_buscar']['prerequisito'] ?></li>
+                            <li class="collection-item"><?= $_SESSION['producto_buscar']['precio_venta'] ?></li>
+                            <li class="collection-item"><?= $_SESSION['producto_buscar']['precio_compra'] ?></li>
+                            <li class="collection-item"><?= $_SESSION['producto_buscar']['cantidad'] ?></li>
+                            <li class="collection-item"><?= $_SESSION['producto_buscar']['codigo_ingreso'] ?></li>
+                        </ul>
+
+                    <?php
+                        unset($_SESSION['producto_buscar']);
+                    } ?>
+
+                </p>
+            </div>
 
                 
-                    <div class="col l12 m12 s12">
+                    <div class="col l12 m12 s12" v-if="productoexiste">
                         <hr style="height:3px; border:none; background: #dd2c00; margin-bottom:20px;">
 
-                        <table>
+                        <div class="" v-if="productoexiste">
+                            <table class="ml-32">
                             <tr>
-                                <th>Nombre</th>
+                                <th> Nombre </th>
                                 <th>Pre-requisitos</th>
-                                <th>Precio venta</th>
-                                <th>Precio compra</th>
-                                <th>Cantidad</th>
-                                <th>Codigo del producto</th>
-                                <th></th>
-                                <th></th>
+                                <th> Precio venta </th>
+                                <th> Precio compra </th>
+                                <th> Cantidad </th>
+                                <th> Codigo spawn</th>
+                                <th> Venta</th>
+                                <th> Compra</th>
+                                
                             </tr>
-
-                            <tr v-for="p in productos">
-                                <td>{{p.nombre}}</td>
-                                <td>{{p.prerequisito}}</td>
-                                <td>{{p.precio_venta}}</td>
-                                <td>{{p.precio_compra}}</td>
-                                <td>{{p.cantidad}}</td>
-                                <td>{{codigo_ingreso}}</td>
-                                <td>
+                            <?php foreach($productos as $item){ ?>
+                                <tr class="black-text">                                   
+                                    <td><?=$item['nombre']; ?></td>
+                                    <td><?=$item['prerequisito']; ?></td>
+                                    <td><?=$item['precio_venta']; ?></td>   
+                                    <td><?=$item['precio_compra']; ?></td>   
+                                    <td><?=$item['cantidad']; ?></td>   
+                                    <td><?=$item['codigo_ingreso']; ?></td> 
+                                    </td>
+                                    <td>
                                     
-                                </td>
-                                <td>
-                                   
-                                </td>
-                            </tr>
 
-                        </table>
+                                    <button class="btn-small btn-floating back-field-desactived orange darken-4" @click="abrirModal(rec)"><i class="material-icons">shopping_cart</i></button>
+
+                                    </td>
+                                    <td>
+
+                                    <button class="btn-small btn-floating back-field-desactived orange darken-4" @click="generarPDF(rec.id)"><i class="material-icons">storefront</i></button>
+
+                                    </td>
+                                </tr>
+                        
+                                <?php } ?>
+                             </table>
+                    
+                        </div>
 
                         <!-- modal -->
                     

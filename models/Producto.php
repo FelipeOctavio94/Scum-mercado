@@ -25,9 +25,9 @@ class Producto
         return $stm->execute();
     }
 
-    public function buscarProducto($id){
-        $sql = Conexion::conector()->prepare("SELECT * FROM producto WHERE id=:A");
-        $stm->bindParam(":A", $id);
+    public function buscarProducto($nombre){
+        $sql = Conexion::conector()->prepare("SELECT * FROM producto WHERE nombre=:A");
+        $stm->bindParam(":A", $nombre);
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
