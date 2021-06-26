@@ -2,69 +2,55 @@
 
 namespace controllers;
 
+require("../models/Producto.php");
+
 use models\Producto as Producto;
 
-require_once("../models/Producto.php");
-
 class InsertarProducto{
-    public $nombre;
-    public $prerequisito;
-    public $precio_venta;
-    public $precio_compra;
-    public $cantidad;
-    public $codigo_ingreso;
+    private $nombre;
+    private $prerequisito;
+    private $precio_venta;
+    private $precio_compra;
+    private $cantidad;
+    private $codigo_ingreso;
   
 
     public function __construct()
     {
-        $this->capturarDatos();
-        
-
-    }
-    public function insertar(){
-        $this->capturarDatos();
-        session_start();
-        $nombre = "";
-        if ($this->nombre == "" || $this->prerequisito == "" || $this->precio_venta == ""|| $this->precio_compra == "" || $this->cantidad == "" || $this->codigo_ingreso == "") {
-            $mensaje = ["msg"=>"complete los campos vacios"];
-            echo json_encode($mensaje);
-            return;
-
-        } 
-        $data = $this->data($nombre);
-        print_r($data);
-        $model = new Producto();
-        $count = $model->insertarProducto($data);
-        if ($count == 1) {
-            $_SESSION['success']="Producto creado con exito";
-        }
-        
-        header("Location: ../ingresoProducto.php");
-       
-    }
-
-    public function capturarDatos(){
         $this->nombre = $_POST['nombre'];
         $this->prerequisito = $_POST['prerequisito'];
         $this->precio_venta = $_POST['precio_venta'];
         $this->precio_compra= $_POST['precio_compra'];
         $this->cantidad = $_POST['cantidad'];
         $this->codigo_ingreso = $_POST['codigo_ingreso'];
+    
     }
+    public function guardarProducto(){
+        session_start();
+        if($this->nombre == "" || $this->precio_venta == ""||  $this->cantidad == "" || $this->codigo_ingreso == ""){
+            $_SESSION['c_error']="Complete los campos";
+            header("Location: ../view/user.php");
+            return;
 
-    public function data($nombre){
-        return [
-            'nombre'=>$this->nombre,
-            'prerequisito'=>$this->prerequisito,
-            'precio_venta'=>$this->precio_venta,
-            'precio_compra'=>$this->precio_compra,
-            'cantidad'=>$this->cantidad,
-            'codigo_ingreso'=>$this->codigo_ingreso
-        ];
+        }
+        $model = new Producto();
+        $data = ['nombre'=>$this->nombre,
+        'prerequisito'=>$this->prerequisito,
+        'precio_venta'=>$this->precio_venta,
+        'precio_compra'=>$this->precio_compra,
+        'cantidad'=>$this->cantidad,
+        'codigo_ingreso'=>$this->codigo_ingreso];
+
+        $count = $model->insertar($data);
+        if($count == 1){
+            $_SESSION['c_resp'] = "Producto creado!";
+        }else{
+            $_SESSION['c_error'] = "Error en la base de datos :(";
+        }
+        header("Location: ../view/user.php");
+        
 
     }
-
-
 }
 $obj = new InsertarProducto();
-$obj->insertar();
+$obj->guardarProducto();

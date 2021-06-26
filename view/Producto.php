@@ -50,13 +50,7 @@
             <div class="container" id="app" style="padding:20px; margin-top:20px; border-radius:10px; align-content:center; background: rgba(255, 255, 255, 0.8)">
                 <div class="row">
                     <div class="col l4 m12 s12">
-                        <form @submit.prevent="buscar">
-                            <div class="input-field">
-                                <input type="text" v-model="nombre" id="p" required>
-                                <label for="p">Nombre</label>
-                            </div>
-                            <button class="btn-small deep-orange">Buscar</button>
-                        </form>
+                        
                     </div>
 
                     <div class="col l8 m12 s12">

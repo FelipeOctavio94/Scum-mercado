@@ -1,8 +1,8 @@
 new Vue({
-    el:'#app',
+    el:'#buscarNombre',
     data:{
-        productoexiste: false ,
         url:"http://localhost/scum-mercado/",
+        productoexiste: false ,
         nombre:"",
         productos:[]
         

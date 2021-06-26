@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Scum Pandemia Mercado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
@@ -48,28 +48,29 @@
             </ul>
             
             <div class="container" style="width:500px; padding:20px; margin-top:20px; border-radius:10px; align-content:center; background: rgba(255, 255, 255, 0.8)">
+            <?php if(!isset($_SESSION['editar'])){ ?>
                 <form action="../controllers/InsertarProducto.php" method="POST">
                     <h4>Nuevo Producto</h4>
                     <br>
                 
                     <div class="input-field">
                         
-                        <input id="n" type="text" name="name">
+                        <input id="n" type="text" name="nombre">
                         <label for="n">Nombre</label>
                     </div>
                     <div class="input-field">
                        
-                        <input id="d" type="text" name="requisito">
+                        <input id="d" type="text" name="prerequisito">
                         <label for="d">Pre-requisitos</label>
                     </div>
                     <div class="input-field">
                         
-                        <input id="t" type="text" name="preciov">
+                        <input id="t" type="text" name="precio_venta">
                         <label for="t">Precio de Venta</label>
                     </div>
                     <div class="input-field">
                         
-                        <input type="text" class="text"  name="precioc">
+                        <input type="text" class="text"  name="precio_compra">
                         <label for="f">Precio de Compra</label>
                     </div>
                     <div class="input-field">
@@ -79,7 +80,7 @@
                     </div> 
                     <div class="input-field">
                         
-                        <input id="c" type="text" name="codigo">
+                        <input id="c" type="text" name="codigo_ingreso">
                         <label for="c">Codigo de Spawn</label>
                     </div> 
                     <button class="waves-effect waves-light btn ancho-100 deep-orange" style="font-family: 'Coustard', serif;">Añadir</button>
@@ -102,6 +103,8 @@
                     ?>
                 </p>
             </div>
+        <?php }?>
+            
         <?php }else{ ?>
             <div class="card-panel" style="width:400px; margin:0 auto; margin-top:20px; border-radius:10px; background: rgba(255, 255, 255, 0.8)">
                 <h4 class="center" style="color:#ef5350;">Error de acceso</h4>
@@ -111,7 +114,7 @@
                         <a href="../view/admin.php"><i class="material-icons deep-orange-text" style="font-size: 40px;">arrow_back</i></a>
                     </p>
                     <p class="right">
-                        <a href="salir.php"><i class="material-icons deep-orange-text" style="font-size: 40px;">exit_to_app</i></a>
+                        <a href=" salir.php"><i class="material-icons deep-orange-text" style="font-size: 40px;">exit_to_app</i></a>
                     </p>
                 </div>
             </div>
@@ -127,7 +130,15 @@
         </div>
     <?php } ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    <script>src="../js/crearProducto.js"</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
     
 </body>
 </html>
