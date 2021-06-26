@@ -1,122 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesion</title>
+    <title>Scum Pandemia Mercado</title>
+    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-
-
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Coustard&display=swap" rel="stylesheet"> 
 </head>
-
-<body background="img/fondo.jpg">
-
-
-
-
-<div class="container ">
-        <div class="row" >
-            <div class="col l4 m4 s12">
-                
-            </div>
-            <div class="col l4 m4 s12">
-            <div class="card-content">
-                        <div class="center card-image">
-                            <img src="img/lentes.png">
-                        </div>
-                                         
-            </div>
-
-
-
-
-
-
-            <div class="#e0e0e0 grey lighten-2">
-                <br>
-            <h4 class="center #455a64 blue-grey-text accent-4">Acceda a su cuenta</h4> 
-                        <br> 
-
-                    <form action="controllers/ControlLogin.php" method="POST">
-
-
-                        <div class="card-content">
-
-                          
-
-                            <div class="card-errors">
-
-                                <?php
-                                session_start();
-                                if (isset($_SESSION['error'])) { ?>
-
-                                    <h6 class="center red-text text-darken"> <?php echo $_SESSION['error'];  ?></h6>
-
-                                <?php unset($_SESSION['error']);
-                                }
-
-                                ?>
-
-
-                            </div>
-
-
-
-                            <div class="input-field">
-
-                                <input type="text" name="rutUsuario" id="nombre">
-                                <label for="nombre">Ingrese su R.U.T</label>
-
-                            </div>
-
-                            <div class="input-field">
-
-                                <input type="password" name="claveUsuario" id="clave">
-                                <label for="clave">Ingrese su contraseña</label>
-
-
-                            </div>
-
-                            <div class="input-field center-align back-field-desactived">
-
-                                <button class="btn black ancho-100">Iniciar Sesión</button>
-
-                            </div>
-
-
-
-
-                        </div>
-
-
-
-
-
-
-                    </form>
-                    <p class="center">
-                    <a href="info.php">Informacion de los creadores!!</a>
-                    </p>
-                    <br>
+<body style="background-image: url('img/fondo1.jpg'); font-family: 'Coustard', serif;">
+        <div class="card-panel" style="width:400px; margin:0 auto; margin-top:200px; border-radius:10px; align-content:center; background: rgba(205, 208, 203, 0.8)">
+            <p class="center">
+                <img src="img/logo.png" alt="" style="width: 250px; margin: 0 auto;">
+            </p>
+            <h4 class="center ">Iniciar sesion</h4> 
+            <br>
+            <form action="controllers/Login.php" method="POST">
+                <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate" name="rut">
+                    <label for="icon_prefix">Usuario</label>
+                </div> 
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="icon" type="password" class="validate" name="pass">
+                    <label for="icon">Contraseña</label>
                 </div>
+                <p class="center">
+                    <button class="waves-effect waves-light btn ancho-100 deep-orange ancho-100" style="font-family: 'Coustard', serif;">Iniciar sesión</button>
+                </p>
+            </form>
+            <p class="red-text center">
+                <?php
+                    session_start();
+                    if(isset($_SESSION['error'])){
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                    }
+                ?>
+            </p>
+            <br>
+       
 
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
-
-
+        </div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>      
 </body>
-
 </html>
