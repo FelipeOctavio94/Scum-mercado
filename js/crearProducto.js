@@ -37,7 +37,7 @@ new Vue({
             M.toast({html: this.alerta})
         },
         cargar: async function () {
-            var url = "http://localhost/scum-mercado/controllers/Productos.php";
+            var url = "https://scum-mercado.herokuapp.com/controllers/Productos.php";
       
             try {
               const res = await fetch(url);
