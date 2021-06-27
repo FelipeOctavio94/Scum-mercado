@@ -50,7 +50,7 @@ document.getElementById("bt_guardar").addEventListener("click", (e) => {
 
 async function insertarProducto() {
   try {
-    const URL = "http://localhost/scum-mercado/controllers/InsertarProducto.php";
+    const URL = "https://scum-mercado.herokuapp.com/controllers/Productos.php";
     const res = await fetch(URL, {
       method: "POST",
       body: new FormData(document.getElementById("form")),
