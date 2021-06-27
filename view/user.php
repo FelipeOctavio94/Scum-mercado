@@ -43,7 +43,7 @@
                 </li>
                 <li><a href="../view/user.php">Añadir producto</a></li>
                 <li><a href="../view/buscarProducto.php">Buscar producto</a></li>
-                <li><a href="../view/producto.php">Ingreso</a></li>
+                <li><a href="../view/producto.php">Productos</a></li>
                 <li><a href="salir.php"><i class="material-icons deep-orange-text" style="font-size: 40px;">exit_to_app</i></a></li>
             </ul>
             
