@@ -1,7 +1,7 @@
 new Vue({
     el:'#creacionDeProductos',
     data:{
-        url: "http://localhost/scum-mercado/",
+        url: "https://scum-mercado.herokuapp.com/",
         vnombre:'',
         vprerequisito:'',
         vprecio_venta:'',

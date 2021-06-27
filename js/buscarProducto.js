@@ -1,7 +1,7 @@
 new Vue({
     el:'#buscarProducto',
     data:{
-        url:"http://localhost/scum-mercado/",
+        url:"https://scum-mercado.herokuapp.com/",
         productoexiste: false ,
         nombre:"",
         productos:[]
