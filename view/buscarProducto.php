@@ -28,7 +28,6 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 20px;">
                     <li><a href="../view/user.php">Añadir producto<i class="material-icons left">playlist_add</i></a></li>
                         <li><a href="../view/buscarProducto.php">Buscar producto<i class="material-icons left">search</i></a></li>
-                        <li><a href="../view/producto.php">Productos<i class="material-icons left"></i></a></li>
                         <li><a href="salir.php"><i class="material-icons" style="font-size: 40px;">exit_to_app</i></a></li>
                     </ul>
                 </div>
@@ -48,7 +47,6 @@
                 </li>
                 <li><a href="../view/user.php">Añadir producto</a></li>
                 <li><a href="../view/buscarProducto.php">Buscar producto</a></li>
-                <li><a href="../view/producto.php">Productos</a></li>
                 <li><a href="salir.php"><i class="material-icons deep-orange-text" style="font-size: 40px;">exit_to_app</i></a></li>
             </ul>
 
