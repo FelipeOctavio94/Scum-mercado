@@ -5,6 +5,7 @@
     $model = new Producto();
     $rol="vendedor";
     $productos = $model->getProducto();
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,15 +34,15 @@
                 </div>
             </nav>
 
-            <ul id="slide-out" class="sidenav">
+            <ul id="slide-out" class="sidenav"style="padding:20px; margin-top:20px; border-radius:10px; align-content:center; background: rgba(221, 221, 221, 0.8)">
                 <li>
                     <div class="user-view">
                         <div class="background">
                           
                         </div>
                         <div style="display: flex;">
-                            <a href="#user" class="white-text"><i class="material-icons white-text"  style="font-size: 40px;">assignment_ind</i></a>
-                            <a href="#user" class="white-text" style="margin-left: 10px;"><?= $_SESSION['user']['nombre'] ?></a>
+                        <a href="#user" class="black-text"><i class="material-icons black-text"  style="font-size: 40px;">assignment_ind</i></a>
+                            <a href="#user" class="black-text" style="margin-left: 10px;"><?= $_SESSION['user']['nombre'] ?></a>
                         </div>
                     </div>
                 </li>
@@ -54,20 +55,20 @@
                 <h5>Buscar producto</h5>
                 <br>
                 <div class="row" id="app">
-                <form action="controllers/BuscarProductoNombre.php" method="POST">
-                        <div class="col l3 m3 s12">
-                            <div class="input-field">
-                                <i class="material-icons prefix">lock_outline</i>
-                                <input id="p" type="text" v-model="nombre">
-                                <label for="p">Nombre del producto</label>
-                            </div> 
-                        </div>
+                    <form @submit.prevent="buscarProducto">
+                            <div class="col l3 m3 s12">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">lock_outline</i>
+                                    <input id="p" type="text" v-model="nombre">
+                                    <label for="p">Nombre del producto</label>
+                                </div> 
+                            </div>
 
-                        <div class="col l3 m3 s12">
-                            <br>
-                            <button class="btn-small deep-orange">Buscar</button>
-                        </div>
-                </form>
+                            <div class="col l3 m3 s12">
+                                <br>
+                                <button class="btn-small deep-orange">Buscar</button>
+                            </div>
+                    </form>
                 <div class="col l6">
                 <p class="red-text  ">
                     <?php
@@ -100,7 +101,7 @@
                         <hr style="height:3px; border:none; background: #dd2c00; margin-bottom:20px;">
 
                         <div class="" v-if="productoexiste">
-                            <table class="ml-32">
+                            <table class="responsive-table">
                             <tr>
                                 <th> Nombre </th>
                                 <th>Pre-requisitos</th>
@@ -145,9 +146,9 @@
 
                     </div>
                     
-                </div>
+                
 
-            </div>
+           
         <?php }else{ ?>
             <div class="card-panel" style="width:400px; margin:0 auto; margin-top:20px; border-radius:10px; background: rgba(255, 255, 255, 0.8)">
                 <h4 class="center" style="color:#ef5350;">Error de acceso</h4>
@@ -176,7 +177,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  
- 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
     <script src="../js/buscarProducto.js"></script>
 </body>
 </html>

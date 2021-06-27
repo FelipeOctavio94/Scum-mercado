@@ -28,15 +28,15 @@
                 </div>
             </nav>
 
-            <ul id="slide-out" class="sidenav">
+            <ul id="slide-out" class="sidenav"style="padding:20px; margin-top:20px; border-radius:10px; align-content:center; background: rgba(221, 221, 221, 0.8)">
                 <li>
                     <div class="user-view">
                         <div class="background">
                             
                         </div>
                         <div style="display: flex;">
-                            <a href="#user" class="white-text"><i class="material-icons white-text"  style="font-size: 40px;">assignment_ind</i></a>
-                            <a href="#user" class="white-text" style="margin-left: 10px;"><?= $_SESSION['user']['nombre'] ?></a>
+                            <a href="#user" class="black-text"><i class="material-icons black-text"  style="font-size: 40px;">assignment_ind</i></a>
+                            <a href="#user" class="black-text" style="margin-left: 10px;"><?= $_SESSION['user']['nombre'] ?></a>
                         </div>
                     </div>
                 </li>

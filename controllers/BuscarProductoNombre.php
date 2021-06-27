@@ -14,20 +14,18 @@ class BuscarProductoNombre{
 
     public function buscarProducto(){
         session_start();
-        if ($this->nombre == "") {
-            $_SESSION['error_buscar'] = "Complete el nombre";
-            header("Location: ../buscarProducto.php");
-            return;
-        } 
-        $modelo = new Producto();
-        $arr = $modelo->buscarProducto($this->nombre);
-        if (count($arr) == 0) {
-            $_SESSION['error_buscar'] = "Nombre no existe";
-        } else {
-            $_SESSION['producto_buscar'] = $arr[0]; //['id'=>?, 'nombre'=>?]
-        }
+        if(isset($_SESSION['user'])){
+            
+            $modelo= new Producto();
+            $array= $modelo->buscarProducto($this->nombre);
 
-        header("Location: ../buscarProducto.php");
+            echo json_encode($array);
+
+
+        }else{
+
+            echo json_encode(["msg"=>"No tienes permisos para estar aqui"]);
+        }
     }
 
 }
