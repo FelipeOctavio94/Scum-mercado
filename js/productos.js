@@ -3,7 +3,7 @@ cargaProductos();
 async function cargaProductos() {
   try {
     const res = await fetch(
-      "https://scum-mercado.herokuapp.com/controllers/Productos.php"
+      "https://scum-mercado.herokuapp.com/"
     );
     const data = await res.json();
     pintaTabla(data);
@@ -50,7 +50,7 @@ document.getElementById("bt_guardar").addEventListener("click", (e) => {
 
 async function insertarProducto() {
   try {
-    const URL = "https://scum-mercado.herokuapp.com/controllers/Productos.php";
+    const URL = "https://scum-mercado.herokuapp.com/";
     const res = await fetch(URL, {
       method: "POST",
       body: new FormData(document.getElementById("form")),
