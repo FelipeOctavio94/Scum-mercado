@@ -1,6 +1,12 @@
-cargaProductos();
-
-async function cargaProductos() {
+new Vue({
+data:{
+  url: "https://scum-mercado.herokuapp.com/",
+ 
+  productos:[],
+  
+},
+methods:{
+  cargaProductos: async function () {
   try {
     const res = await fetch(
       "https://scum-mercado.herokuapp.com/controllers/Productos.php"
@@ -12,9 +18,9 @@ async function cargaProductos() {
   } catch (error) {
     console.log(error);
   }
-}
+},
 
-function pintaTabla(data) {
+pintaTabla: function (data) {
   var productos = document.getElementById("productos");
   var tabla = `
             <table>
@@ -41,14 +47,9 @@ function pintaTabla(data) {
   });
   tabla += "</table>";
   productos.innerHTML = tabla;
-}
+},
 
-document.getElementById("bt_guardar").addEventListener("click", (e) => {
-  e.preventDefault();
-  insertarProducto();
-});
-
-async function insertarProducto() {
+insertarProducto: async function () {
   try {
     const URL = "https://scum-mercado.herokuapp.com/controllers/InsertarProducto.php";
     const res = await fetch(URL, {
@@ -62,3 +63,8 @@ async function insertarProducto() {
     console.log(error);
   }
 }
+},
+created(){
+  this.cargaProductos();
+}
+});
