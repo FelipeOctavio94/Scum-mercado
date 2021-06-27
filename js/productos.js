@@ -3,7 +3,7 @@ cargaProductos();
 async function cargaProductos() {
   try {
     const res = await fetch(
-      "https://scum-mercado.herokuapp.com/"
+      "https://scum-mercado.herokuapp.com/controllers/Productos.php"
     );
     const data = await res.json();
     pintaTabla(data);
